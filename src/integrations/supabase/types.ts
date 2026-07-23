@@ -14,7 +14,123 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      events: {
+        Row: {
+          created_at: string
+          description: string
+          end_time: string | null
+          event_type: Database["public"]["Enums"]["event_type"]
+          id: string
+          is_published: boolean
+          location: string
+          start_time: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description: string
+          end_time?: string | null
+          event_type: Database["public"]["Enums"]["event_type"]
+          id?: string
+          is_published?: boolean
+          location: string
+          start_time: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string
+          end_time?: string | null
+          event_type?: Database["public"]["Enums"]["event_type"]
+          id?: string
+          is_published?: boolean
+          location?: string
+          start_time?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      news: {
+        Row: {
+          body: string
+          cover_image_url: string | null
+          created_at: string
+          excerpt: string | null
+          id: string
+          is_published: boolean
+          published_at: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          body: string
+          cover_image_url?: string | null
+          created_at?: string
+          excerpt?: string | null
+          id?: string
+          is_published?: boolean
+          published_at?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          body?: string
+          cover_image_url?: string | null
+          created_at?: string
+          excerpt?: string | null
+          id?: string
+          is_published?: boolean
+          published_at?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      resources: {
+        Row: {
+          category: Database["public"]["Enums"]["resource_category"]
+          created_at: string
+          description: string | null
+          file_size_kb: number | null
+          file_type: string | null
+          file_url: string
+          id: string
+          is_published: boolean
+          title: string
+          updated_at: string
+          uploaded_at: string
+        }
+        Insert: {
+          category: Database["public"]["Enums"]["resource_category"]
+          created_at?: string
+          description?: string | null
+          file_size_kb?: number | null
+          file_type?: string | null
+          file_url: string
+          id?: string
+          is_published?: boolean
+          title: string
+          updated_at?: string
+          uploaded_at?: string
+        }
+        Update: {
+          category?: Database["public"]["Enums"]["resource_category"]
+          created_at?: string
+          description?: string | null
+          file_size_kb?: number | null
+          file_type?: string | null
+          file_url?: string
+          id?: string
+          is_published?: boolean
+          title?: string
+          updated_at?: string
+          uploaded_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -23,7 +139,21 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      event_type:
+        | "meeting"
+        | "training"
+        | "forum"
+        | "field_school"
+        | "dialogue"
+        | "conference"
+      resource_category:
+        | "meeting_report"
+        | "policy_document"
+        | "training_manual"
+        | "extension_guide"
+        | "research_publication"
+        | "presentation"
+        | "annual_report"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +280,24 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      event_type: [
+        "meeting",
+        "training",
+        "forum",
+        "field_school",
+        "dialogue",
+        "conference",
+      ],
+      resource_category: [
+        "meeting_report",
+        "policy_document",
+        "training_manual",
+        "extension_guide",
+        "research_publication",
+        "presentation",
+        "annual_report",
+      ],
+    },
   },
 } as const
