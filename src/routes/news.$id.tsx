@@ -1,10 +1,10 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { ArrowLeft } from "lucide-react";
-import { newsDetailOptions } from "@/lib/content";
+import { newsDetailOptions, type NewsRow } from "@/lib/content";
 
 export const Route = createFileRoute("/news/$id")({
-  head: ({ loaderData }) => {
+  head: ({ loaderData }: { loaderData?: NewsRow }) => {
     if (!loaderData) {
       return { meta: [{ title: "Article not found" }, { name: "robots", content: "noindex" }] };
     }
@@ -27,7 +27,7 @@ export const Route = createFileRoute("/news/$id")({
   loader: async ({ context, params }) => {
     const data = await context.queryClient.ensureQueryData(newsDetailOptions(params.id));
     if (!data) throw notFound();
-    return data;
+    return data as NewsRow;
   },
   component: NewsDetail,
   errorComponent: ({ error }) => (

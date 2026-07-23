@@ -13,11 +13,14 @@ import { Route as WhyJoinRouteImport } from './routes/why-join'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as StakeholdersRouteImport } from './routes/stakeholders'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PriorityAreasRouteImport } from './routes/priority-areas'
+import { Route as NewsRouteImport } from './routes/news'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as NewsIdRouteImport } from './routes/news.$id'
 
 const WhyJoinRoute = WhyJoinRouteImport.update({
   id: '/why-join',
@@ -39,6 +42,11 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ResourcesRoute = ResourcesRouteImport.update({
+  id: '/resources',
+  path: '/resources',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PrivacyRoute = PrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
@@ -47,6 +55,11 @@ const PrivacyRoute = PrivacyRouteImport.update({
 const PriorityAreasRoute = PriorityAreasRouteImport.update({
   id: '/priority-areas',
   path: '/priority-areas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NewsRoute = NewsRouteImport.update({
+  id: '/news',
+  path: '/news',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -64,40 +77,54 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const NewsIdRoute = NewsIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => NewsRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/news': typeof NewsRouteWithChildren
   '/priority-areas': typeof PriorityAreasRoute
   '/privacy': typeof PrivacyRoute
+  '/resources': typeof ResourcesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/stakeholders': typeof StakeholdersRoute
   '/terms': typeof TermsRoute
   '/why-join': typeof WhyJoinRoute
+  '/news/$id': typeof NewsIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/news': typeof NewsRouteWithChildren
   '/priority-areas': typeof PriorityAreasRoute
   '/privacy': typeof PrivacyRoute
+  '/resources': typeof ResourcesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/stakeholders': typeof StakeholdersRoute
   '/terms': typeof TermsRoute
   '/why-join': typeof WhyJoinRoute
+  '/news/$id': typeof NewsIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/news': typeof NewsRouteWithChildren
   '/priority-areas': typeof PriorityAreasRoute
   '/privacy': typeof PrivacyRoute
+  '/resources': typeof ResourcesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/stakeholders': typeof StakeholdersRoute
   '/terms': typeof TermsRoute
   '/why-join': typeof WhyJoinRoute
+  '/news/$id': typeof NewsIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -105,42 +132,53 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/contact'
+    | '/news'
     | '/priority-areas'
     | '/privacy'
+    | '/resources'
     | '/sitemap.xml'
     | '/stakeholders'
     | '/terms'
     | '/why-join'
+    | '/news/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
     | '/contact'
+    | '/news'
     | '/priority-areas'
     | '/privacy'
+    | '/resources'
     | '/sitemap.xml'
     | '/stakeholders'
     | '/terms'
     | '/why-join'
+    | '/news/$id'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/contact'
+    | '/news'
     | '/priority-areas'
     | '/privacy'
+    | '/resources'
     | '/sitemap.xml'
     | '/stakeholders'
     | '/terms'
     | '/why-join'
+    | '/news/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
+  NewsRoute: typeof NewsRouteWithChildren
   PriorityAreasRoute: typeof PriorityAreasRoute
   PrivacyRoute: typeof PrivacyRoute
+  ResourcesRoute: typeof ResourcesRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   StakeholdersRoute: typeof StakeholdersRoute
   TermsRoute: typeof TermsRoute
@@ -177,6 +215,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/resources': {
+      id: '/resources'
+      path: '/resources'
+      fullPath: '/resources'
+      preLoaderRoute: typeof ResourcesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/privacy': {
       id: '/privacy'
       path: '/privacy'
@@ -189,6 +234,13 @@ declare module '@tanstack/react-router' {
       path: '/priority-areas'
       fullPath: '/priority-areas'
       preLoaderRoute: typeof PriorityAreasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/news': {
+      id: '/news'
+      path: '/news'
+      fullPath: '/news'
+      preLoaderRoute: typeof NewsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -212,15 +264,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/news/$id': {
+      id: '/news/$id'
+      path: '/$id'
+      fullPath: '/news/$id'
+      preLoaderRoute: typeof NewsIdRouteImport
+      parentRoute: typeof NewsRoute
+    }
   }
 }
+
+interface NewsRouteChildren {
+  NewsIdRoute: typeof NewsIdRoute
+}
+
+const NewsRouteChildren: NewsRouteChildren = {
+  NewsIdRoute: NewsIdRoute,
+}
+
+const NewsRouteWithChildren = NewsRoute._addFileChildren(NewsRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
+  NewsRoute: NewsRouteWithChildren,
   PriorityAreasRoute: PriorityAreasRoute,
   PrivacyRoute: PrivacyRoute,
+  ResourcesRoute: ResourcesRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   StakeholdersRoute: StakeholdersRoute,
   TermsRoute: TermsRoute,
