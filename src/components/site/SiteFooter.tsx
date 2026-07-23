@@ -39,9 +39,8 @@ export function SiteFooter() {
         </FooterCol>
 
         <FooterCol title="Resources">
-          <span className="text-sm text-secondary-foreground/60">News (coming soon)</span>
-          <span className="text-sm text-secondary-foreground/60">Events (coming soon)</span>
-          <span className="text-sm text-secondary-foreground/60">Reports (coming soon)</span>
+          <FLink to="/news">News & Events</FLink>
+          <FLink to="/resources">Resource Library</FLink>
         </FooterCol>
 
         <FooterCol title="Contact">

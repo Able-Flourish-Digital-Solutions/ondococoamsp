@@ -1,8 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import { ArrowRight, Users, Target, Sparkles, Calendar } from "lucide-react";
 import { Hero } from "@/components/site/Hero";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { Button } from "@/components/ui/button";
+import { newsListOptions } from "@/lib/content";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -13,6 +15,7 @@ export const Route = createFileRoute("/")({
       { property: "og:description", content: "A coordination platform uniting government, farmers, private sector and partners to advance sustainable cocoa production in Ondo State." },
     ],
   }),
+  loader: ({ context }) => context.queryClient.ensureQueryData(newsListOptions(3)),
   component: Index,
 });
 
@@ -84,23 +87,7 @@ function Index() {
       </section>
 
       {/* Latest news placeholder */}
-      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-        <div className="flex items-end justify-between gap-6">
-          <SectionHeading eyebrow="Latest news" title="News & Events" />
-          <span className="hidden text-sm text-muted-foreground sm:block">Coming soon</span>
-        </div>
-        <div className="mt-10 grid gap-6 md:grid-cols-3">
-          {[1, 2, 3].map((i) => (
-            <div key={i} className="rounded-2xl border border-dashed border-border bg-card/50 p-6">
-              <div className="flex h-40 items-center justify-center rounded-lg bg-muted">
-                <Calendar className="h-8 w-8 text-muted-foreground/50" />
-              </div>
-              <p className="mt-4 text-xs uppercase tracking-wider text-muted-foreground">Coming soon</p>
-              <p className="mt-1 text-base font-medium text-foreground/70">News and event updates will appear here.</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <LatestNews />
 
       {/* CTA */}
       <section className="mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-8">
@@ -121,5 +108,56 @@ function Index() {
         </div>
       </section>
     </>
+  );
+}
+
+function LatestNews() {
+  const { data: news } = useSuspenseQuery(newsListOptions(3));
+  return (
+    <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+      <div className="flex items-end justify-between gap-6">
+        <SectionHeading eyebrow="Latest news" title="News & Events" />
+        <Link to="/news" className="hidden text-sm font-medium text-primary hover:underline sm:inline-flex sm:items-center">
+          View all <ArrowRight className="ml-1 h-4 w-4" />
+        </Link>
+      </div>
+      {news.length === 0 ? (
+        <div className="mt-10 grid gap-6 md:grid-cols-3">
+          {[1, 2, 3].map((i) => (
+            <div key={i} className="rounded-2xl border border-dashed border-border bg-card/50 p-6">
+              <div className="flex h-40 items-center justify-center rounded-lg bg-muted">
+                <Calendar className="h-8 w-8 text-muted-foreground/50" />
+              </div>
+              <p className="mt-4 text-xs uppercase tracking-wider text-muted-foreground">Coming soon</p>
+              <p className="mt-1 text-base font-medium text-foreground/70">News updates will appear here.</p>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className="mt-10 grid gap-6 md:grid-cols-3">
+          {news.map((n) => (
+            <Link
+              key={n.id}
+              to="/news/$id"
+              params={{ id: n.id }}
+              className="group overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg"
+            >
+              <div className="aspect-[16/10] overflow-hidden bg-muted">
+                {n.cover_image_url && (
+                  <img src={n.cover_image_url} alt="" loading="lazy" className="h-full w-full object-cover transition-transform group-hover:scale-105" />
+                )}
+              </div>
+              <div className="p-6">
+                <p className="text-xs uppercase tracking-wider text-muted-foreground">
+                  {new Date(n.published_at).toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" })}
+                </p>
+                <h3 className="mt-2 line-clamp-2 text-base font-semibold text-foreground">{n.title}</h3>
+                {n.excerpt && <p className="mt-2 line-clamp-2 text-sm text-muted-foreground">{n.excerpt}</p>}
+              </div>
+            </Link>
+          ))}
+        </div>
+      )}
+    </section>
   );
 }
