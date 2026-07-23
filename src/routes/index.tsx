@@ -11,7 +11,7 @@ export const Route = createFileRoute("/")({
     meta: [
       { title: "Ondo State Cocoa MSP — Strengthening the Cocoa Value Chain" },
       { name: "description", content: "A coordination platform uniting government, farmers, private sector and partners to advance sustainable cocoa production in Ondo State." },
-      { property: "og:title", content: "Ondo State Cocoa Multi-Stakeholder Platform" },
+      { property: "og:title", content: "Ondo State Cocoa MSP — Strengthening the Cocoa Value Chain" },
       { property: "og:description", content: "A coordination platform uniting government, farmers, private sector and partners to advance sustainable cocoa production in Ondo State." },
     ],
   }),

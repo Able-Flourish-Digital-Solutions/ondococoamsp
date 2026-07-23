@@ -79,12 +79,16 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Ondo State Cocoa Multi-Stakeholder Platform" },
-      { name: "description", content: "Coordinating government, farmers, private sector, researchers and development partners to strengthen Ondo State's cocoa value chain." },
-      { property: "og:title", content: "Ondo State Cocoa Multi-Stakeholder Platform" },
-      { property: "og:description", content: "Coordinating government, farmers, private sector, researchers and development partners to strengthen Ondo State's cocoa value chain." },
+      { title: "Ondo State Cocoa MSP — Strengthening the Cocoa Value Chain" },
+      { name: "description", content: "A coordination platform uniting government, farmers, private sector and partners to advance sustainable cocoa production in Ondo State." },
+      { property: "og:title", content: "Ondo State Cocoa MSP — Strengthening the Cocoa Value Chain" },
+      { property: "og:description", content: "A coordination platform uniting government, farmers, private sector and partners to advance sustainable cocoa production in Ondo State." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Ondo State Cocoa MSP — Strengthening the Cocoa Value Chain" },
+      { name: "twitter:description", content: "A coordination platform uniting government, farmers, private sector and partners to advance sustainable cocoa production in Ondo State." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/642b4c14-6336-44b6-93d0-0e9783973046" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/642b4c14-6336-44b6-93d0-0e9783973046" },
     ],
     links: [
       {
