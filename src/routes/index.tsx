@@ -1,10 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { ArrowRight, Users, Target, Sparkles, Calendar } from "lucide-react";
+import { ArrowRight, Users, Target, Sparkles, Calendar, UserPlus } from "lucide-react";
 import { Hero } from "@/components/site/Hero";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { Button } from "@/components/ui/button";
 import { newsListOptions } from "@/lib/content";
+import { MEMBERSHIP_FORM_URL, MEMBERSHIP_PARTNERS } from "@/lib/membership";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -89,6 +90,53 @@ function Index() {
       {/* Latest news placeholder */}
       <LatestNews />
 
+      {/* Membership */}
+      <section id="membership" className="mx-auto max-w-7xl scroll-mt-20 px-4 pt-4 pb-16 sm:px-6 lg:px-8">
+        <div className="rounded-3xl border border-border bg-card p-8 shadow-sm sm:p-12">
+          <div className="grid gap-10 lg:grid-cols-5 lg:items-center">
+            <div className="lg:col-span-3">
+              <p className="text-xs font-semibold uppercase tracking-wider text-primary">Membership</p>
+              <h2 className="mt-2 font-display text-3xl font-semibold text-foreground sm:text-4xl">
+                Register for OSCP Membership
+              </h2>
+              <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+                The OSCP brings together farmers, processors, researchers,
+                government agencies, NGOs, financiers, and private sector actors
+                to strengthen the cocoa value chain in Ondo State. Join as a
+                Core/Executive Member, Support Member, Observer, or Thematic
+                Member.
+              </p>
+              <div className="mt-6 flex flex-wrap items-center gap-3">
+                <Button asChild size="lg">
+                  <a href={MEMBERSHIP_FORM_URL} target="_blank" rel="noopener noreferrer">
+                    <UserPlus className="mr-2 h-4 w-4" />
+                    Register for OSCP Membership
+                  </a>
+                </Button>
+              </div>
+              <p className="mt-4 text-xs text-muted-foreground">
+                Registration is managed by the OSCP Secretariat via a Google
+                Form. Your information will be reviewed for platform membership.
+              </p>
+            </div>
+            <div className="lg:col-span-2">
+              <div className="rounded-2xl border border-border bg-muted/40 p-6">
+                <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                  Membership tiers
+                </p>
+                <ul className="mt-3 space-y-2 text-sm text-foreground">
+                  <li>• Core / Executive Member</li>
+                  <li>• Support Member</li>
+                  <li>• Observer</li>
+                  <li>• Thematic Member</li>
+                </ul>
+                <p className="mt-5 text-xs text-muted-foreground">{MEMBERSHIP_PARTNERS}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-8">
         <div className="relative overflow-hidden rounded-3xl gradient-hero px-8 py-16 text-center text-primary-foreground sm:px-16">
@@ -99,7 +147,9 @@ function Index() {
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Button asChild size="lg" className="bg-white text-primary hover:bg-white/90">
-              <Link to="/contact">Join the Platform</Link>
+              <a href={MEMBERSHIP_FORM_URL} target="_blank" rel="noopener noreferrer">
+                Register for OSCP Membership
+              </a>
             </Button>
             <Button asChild size="lg" variant="outline" className="border-white/40 bg-transparent text-white hover:bg-white/10 hover:text-white">
               <Link to="/why-join">See the benefits</Link>
