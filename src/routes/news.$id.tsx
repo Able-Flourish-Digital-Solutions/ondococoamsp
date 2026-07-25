@@ -2,6 +2,8 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { ArrowLeft } from "lucide-react";
 import { newsDetailOptions, type NewsRow } from "@/lib/content";
+import groupImg1 from "@/assets/msp-inauguration-group-1.jpg.asset.json";
+import groupImg2 from "@/assets/msp-inauguration-group-2.jpg.asset.json";
 
 export const Route = createFileRoute("/news/$id")({
   head: ({ loaderData }: { loaderData?: NewsRow }) => {
@@ -72,6 +74,26 @@ function NewsDetail() {
           <p key={i} className="mb-5">{p}</p>
         ))}
       </div>
+      {data.title.toLowerCase().includes("inauguration") && (
+        <div className="mt-10 grid gap-4 sm:grid-cols-2">
+          <figure className="overflow-hidden rounded-2xl border border-border bg-card">
+            <img
+              src={groupImg1.url}
+              alt="Participants at the Cocoa Stakeholder Meeting and Inauguration in Akure"
+              loading="lazy"
+              className="h-full w-full object-cover"
+            />
+          </figure>
+          <figure className="overflow-hidden rounded-2xl border border-border bg-card">
+            <img
+              src={groupImg2.url}
+              alt="Stakeholders convened at the Sustainable Cocoa MSP inauguration, Royal Bird Hotel, Akure"
+              loading="lazy"
+              className="h-full w-full object-cover"
+            />
+          </figure>
+        </div>
+      )}
     </article>
   );
 }
