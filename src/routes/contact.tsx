@@ -72,7 +72,16 @@ function Contact() {
 
         <aside className="space-y-4 lg:col-span-2">
           <InfoRow Icon={MapPin} title="Office address" body="MSP Secretariat, Alagbaka, Akure, Ondo State, Nigeria" />
-          <InfoRow Icon={Phone} title="Phone" body="+234 (0)000 000 0000" />
+          <InfoRow
+            Icon={Phone}
+            title="Phone"
+            body={
+              <>
+                <a href="tel:+2348034729424" className="block hover:text-primary">+234 803 472 9424</a>
+                <a href="tel:+2347065949966" className="block hover:text-primary">+234 706 594 9966</a>
+              </>
+            }
+          />
           <InfoRow Icon={Mail} title="Email" body="info@ondococoamsp.ng" />
 
           <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-sm">
@@ -98,7 +107,7 @@ function Field({ id, label, type = "text", required }: { id: string; label: stri
   );
 }
 
-function InfoRow({ Icon, title, body }: { Icon: React.ComponentType<{ className?: string }>; title: string; body: string }) {
+function InfoRow({ Icon, title, body }: { Icon: React.ComponentType<{ className?: string }>; title: string; body: React.ReactNode }) {
   return (
     <div className="flex items-start gap-4 rounded-2xl border border-border bg-card p-5 shadow-sm">
       <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
