@@ -9,8 +9,8 @@ export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
       { title: "About the MSP — Ondo State Cocoa Platform" },
-      { name: "description", content: "Learn about the vision, mission and objectives of the Ondo State Cocoa Multi-Stakeholder Platform." },
-      { property: "og:title", content: "About the Ondo State Cocoa MSP" },
+      { name: "description", content: "Learn about the vision, mission and objectives of the Ondo State Sustainable Cocoa Multi-Stakeholder Platform." },
+      { property: "og:title", content: "About the Ondo State Sustainable Cocoa MSP" },
       { property: "og:description", content: "Vision, mission and ten strategic objectives guiding the platform." },
     ],
   }),
@@ -73,7 +73,7 @@ function About() {
             every stakeholder to drive progress in areas such as value chain
             development, policy advocacy, climate-smart agriculture, digital
             inclusion, research and innovation, farmer livelihoods, and sustainable
-            cocoa production. The Ondo State Cocoa MSP serves as a coordination
+            cocoa production. The Ondo State Sustainable Cocoa MSP serves as a coordination
             platform that promotes dialogue, joint decision-making, knowledge
             sharing and partnerships aimed at improving cocoa standards,
             productivity, market access and sustainability.

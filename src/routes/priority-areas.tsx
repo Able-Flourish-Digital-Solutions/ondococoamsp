@@ -9,7 +9,7 @@ import {
 export const Route = createFileRoute("/priority-areas")({
   head: () => ({
     meta: [
-      { title: "Priority Areas — Ondo State Cocoa MSP" },
+      { title: "Priority Areas — Ondo State Sustainable Cocoa MSP" },
       { name: "description", content: "Twelve priority areas guiding the platform's work — from sustainable production to policy advocacy." },
       { property: "og:title", content: "MSP Priority Areas" },
       { property: "og:description", content: "The twelve focus areas shaping cocoa sector coordination in Ondo State." },

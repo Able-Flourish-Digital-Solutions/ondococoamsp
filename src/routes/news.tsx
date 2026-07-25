@@ -11,10 +11,10 @@ import {
 export const Route = createFileRoute("/news")({
   head: () => ({
     meta: [
-      { title: "News & Events — Ondo State Cocoa MSP" },
-      { name: "description", content: "Latest news, updates and upcoming events from the Ondo State Cocoa Multi-Stakeholder Platform." },
+      { title: "News & Events — Ondo State Sustainable Cocoa MSP" },
+      { name: "description", content: "Latest news, updates and upcoming events from the Ondo State Sustainable Cocoa Multi-Stakeholder Platform." },
       { property: "og:title", content: "News & Events" },
-      { property: "og:description", content: "Announcements, meetings, trainings, forums and dialogues from the Ondo Cocoa MSP." },
+      { property: "og:description", content: "Announcements, meetings, trainings, forums and dialogues from the Ondo State Sustainable Cocoa MSP." },
     ],
   }),
   loader: ({ context }) => {

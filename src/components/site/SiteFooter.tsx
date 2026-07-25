@@ -12,7 +12,7 @@ export function SiteFooter() {
             <span className="flex h-9 w-9 items-center justify-center rounded-md bg-primary text-primary-foreground">
               <Leaf className="h-5 w-5" />
             </span>
-            <span className="font-display text-base font-semibold">Ondo Cocoa MSP</span>
+            <span className="font-display text-base font-semibold">Ondo State Sustainable Cocoa MSP</span>
           </div>
           <p className="mt-4 max-w-sm text-sm text-secondary-foreground/80">
             Coordinating stakeholders across Ondo State's cocoa value chain to
@@ -61,7 +61,7 @@ export function SiteFooter() {
 
       <div className="border-t border-secondary-foreground/10">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-6 text-xs text-secondary-foreground/70 sm:flex-row sm:px-6 lg:px-8">
-          <p>© {year} Ondo State Cocoa Multi-Stakeholder Platform. All rights reserved.</p>
+          <p>© {year} Ondo State Sustainable Cocoa Multi-Stakeholder Platform. All rights reserved.</p>
           <p className="text-secondary-foreground/80">{MEMBERSHIP_PARTNERS}</p>
           <div className="flex gap-5">
             <Link to="/privacy" className="hover:text-secondary-foreground">Privacy Policy</Link>

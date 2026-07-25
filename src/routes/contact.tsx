@@ -10,9 +10,9 @@ import { MapPin, Phone, Mail, Check } from "lucide-react";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact — Ondo State Cocoa MSP" },
-      { name: "description", content: "Get in touch with the Ondo State Cocoa Multi-Stakeholder Platform Secretariat." },
-      { property: "og:title", content: "Contact the Ondo Cocoa MSP" },
+      { title: "Contact — Ondo State Sustainable Cocoa MSP" },
+      { name: "description", content: "Get in touch with the Ondo State Sustainable Cocoa Multi-Stakeholder Platform Secretariat." },
+      { property: "og:title", content: "Contact the Ondo State Sustainable Cocoa MSP" },
       { property: "og:description", content: "Reach the MSP Secretariat by form, phone or email." },
     ],
   }),

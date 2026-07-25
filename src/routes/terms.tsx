@@ -3,10 +3,10 @@ import { createFileRoute } from "@tanstack/react-router";
 export const Route = createFileRoute("/terms")({
   head: () => ({
     meta: [
-      { title: "Terms of Use — Ondo State Cocoa MSP" },
-      { name: "description", content: "Placeholder Terms of Use for the Ondo State Cocoa Multi-Stakeholder Platform." },
+      { title: "Terms of Use — Ondo State Sustainable Cocoa MSP" },
+      { name: "description", content: "Placeholder Terms of Use for the Ondo State Sustainable Cocoa Multi-Stakeholder Platform." },
       { property: "og:title", content: "Terms of Use" },
-      { property: "og:description", content: "Placeholder Terms of Use for the Ondo State Cocoa MSP." },
+      { property: "og:description", content: "Placeholder Terms of Use for the Ondo State Sustainable Cocoa MSP." },
       { name: "robots", content: "noindex" },
     ],
   }),

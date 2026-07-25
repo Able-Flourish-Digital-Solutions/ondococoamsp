@@ -8,7 +8,7 @@ export const Route = createFileRoute("/news/$id")({
     if (!loaderData) {
       return { meta: [{ title: "Article not found" }, { name: "robots", content: "noindex" }] };
     }
-    const title = `${loaderData.title} — Ondo Cocoa MSP`;
+    const title = `${loaderData.title} — Ondo State Sustainable Cocoa MSP`;
     const desc = loaderData.excerpt ?? loaderData.title;
     const img = loaderData.cover_image_url;
     return {

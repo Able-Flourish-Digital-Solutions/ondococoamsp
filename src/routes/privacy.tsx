@@ -3,10 +3,10 @@ import { createFileRoute } from "@tanstack/react-router";
 export const Route = createFileRoute("/privacy")({
   head: () => ({
     meta: [
-      { title: "Privacy Policy — Ondo State Cocoa MSP" },
-      { name: "description", content: "Placeholder Privacy Policy for the Ondo State Cocoa Multi-Stakeholder Platform." },
+      { title: "Privacy Policy — Ondo State Sustainable Cocoa MSP" },
+      { name: "description", content: "Placeholder Privacy Policy for the Ondo State Sustainable Cocoa Multi-Stakeholder Platform." },
       { property: "og:title", content: "Privacy Policy" },
-      { property: "og:description", content: "Placeholder Privacy Policy for the Ondo State Cocoa MSP." },
+      { property: "og:description", content: "Placeholder Privacy Policy for the Ondo State Sustainable Cocoa MSP." },
       { name: "robots", content: "noindex" },
     ],
   }),
