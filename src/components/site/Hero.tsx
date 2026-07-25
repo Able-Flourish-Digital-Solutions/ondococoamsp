@@ -1,7 +1,7 @@
-import { Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import heroImg from "@/assets/hero-cocoa.jpg";
+import { MEMBERSHIP_FORM_URL } from "@/lib/membership";
 
 export function Hero() {
   return (
@@ -34,9 +34,9 @@ export function Hero() {
           </p>
           <div className="mt-9 flex flex-wrap gap-3">
             <Button asChild size="lg" className="bg-white text-primary hover:bg-white/90">
-              <Link to="/contact">
-                Join the Platform <ArrowRight className="ml-1.5 h-4 w-4" />
-              </Link>
+              <a href={MEMBERSHIP_FORM_URL} target="_blank" rel="noopener noreferrer">
+                Register for OSCP Membership <ArrowRight className="ml-1.5 h-4 w-4" />
+              </a>
             </Button>
             <Button asChild size="lg" variant="outline" className="border-white/40 bg-transparent text-white hover:bg-white/10 hover:text-white">
               <a href="#about-preview">Learn More</a>

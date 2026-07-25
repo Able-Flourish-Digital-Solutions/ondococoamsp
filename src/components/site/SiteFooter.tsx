@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Facebook, Twitter, Linkedin, Youtube, Leaf } from "lucide-react";
+import { MEMBERSHIP_FORM_URL, MEMBERSHIP_PARTNERS } from "@/lib/membership";
 
 export function SiteFooter() {
   const year = new Date().getFullYear();
@@ -47,12 +48,21 @@ export function SiteFooter() {
           <FLink to="/contact">Get in touch</FLink>
           <span className="text-sm text-secondary-foreground/80">Secretariat, Akure, Ondo State</span>
           <span className="text-sm text-secondary-foreground/80">info@ondococoamsp.ng</span>
+          <a
+            href={MEMBERSHIP_FORM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm font-medium text-secondary-foreground transition-colors hover:underline"
+          >
+            Become a Member →
+          </a>
         </FooterCol>
       </div>
 
       <div className="border-t border-secondary-foreground/10">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-6 text-xs text-secondary-foreground/70 sm:flex-row sm:px-6 lg:px-8">
           <p>© {year} Ondo State Cocoa Multi-Stakeholder Platform. All rights reserved.</p>
+          <p className="text-secondary-foreground/80">{MEMBERSHIP_PARTNERS}</p>
           <div className="flex gap-5">
             <Link to="/privacy" className="hover:text-secondary-foreground">Privacy Policy</Link>
             <Link to="/terms" className="hover:text-secondary-foreground">Terms of Use</Link>

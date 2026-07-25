@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Menu, X, Leaf } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { MEMBERSHIP_FORM_URL } from "@/lib/membership";
 
 const nav = [
   { to: "/", label: "Home" },
@@ -45,7 +46,9 @@ export function SiteHeader() {
 
         <div className="hidden lg:block">
           <Button asChild size="sm">
-            <Link to="/contact">Join the Platform</Link>
+            <a href={MEMBERSHIP_FORM_URL} target="_blank" rel="noopener noreferrer">
+              Become a Member
+            </a>
           </Button>
         </div>
 
@@ -76,7 +79,14 @@ export function SiteHeader() {
               </Link>
             ))}
             <Button asChild className="mt-2">
-              <Link to="/contact" onClick={() => setOpen(false)}>Join the Platform</Link>
+              <a
+                href={MEMBERSHIP_FORM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setOpen(false)}
+              >
+                Become a Member
+              </a>
             </Button>
           </div>
         </nav>
