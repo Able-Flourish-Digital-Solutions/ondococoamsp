@@ -12,7 +12,7 @@ export function SiteFooter() {
             <span className="flex h-9 w-9 items-center justify-center rounded-md bg-primary text-primary-foreground">
               <Leaf className="h-5 w-5" />
             </span>
-            <span className="font-display text-base font-semibold">Ondo State Sustainable Cocoa MSP</span>
+            <span className="font-display text-base font-semibold">Ondo Sustainable Cocoa MSP</span>
           </div>
           <p className="mt-4 max-w-sm text-sm text-secondary-foreground/80">
             Coordinating stakeholders across Ondo State's cocoa value chain to
