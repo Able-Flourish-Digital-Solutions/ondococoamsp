@@ -4,6 +4,7 @@ import {
   Handshake, Sprout, Leaf, HeartHandshake, FlaskConical, Users2,
   Store, Landmark, Smartphone, CloudSun,
 } from "lucide-react";
+import steeringImg from "@/assets/msp-steering-executives.jpg.asset.json";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -113,6 +114,27 @@ function About() {
               <p className="mt-4 text-sm font-medium text-foreground">{t}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      <section id="leadership" className="border-t border-border/60 bg-card/40">
+        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+          <SectionHeading
+            eyebrow="Leadership"
+            title="Steering Committee"
+            description="The newly elected Steering Committee executives of the Sustainable Cocoa Multi-Stakeholder Platform (MSP), Ondo State."
+          />
+          <figure className="mt-10 overflow-hidden rounded-3xl border border-border bg-card shadow-sm">
+            <img
+              src={steeringImg.url}
+              alt="Newly elected Steering Committee executives of the Sustainable Cocoa MSP, Ondo State"
+              loading="lazy"
+              className="h-auto w-full object-cover"
+            />
+            <figcaption className="px-6 py-4 text-sm text-muted-foreground">
+              Steering Committee executives, inaugurated on 23 July 2026 at Royal Bird Hotel and Towers, Akure.
+            </figcaption>
+          </figure>
         </div>
       </section>
     </>
