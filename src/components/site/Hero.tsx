@@ -27,7 +27,7 @@ export function Hero() {
             Strengthening Ondo State's Cocoa Value Chain Through Collaboration
           </h1>
           <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/85 sm:text-lg">
-            The Ondo State Cocoa Multi-Stakeholder Platform (MSP) brings together
+            The Ondo State Sustainable Cocoa Multi-Stakeholder Platform (MSP) brings together
             government, farmers, private sector actors, development partners,
             researchers, financial institutions and civil society to jointly
             improve cocoa production, sustainability, quality and livelihoods.

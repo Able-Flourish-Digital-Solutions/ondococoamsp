@@ -20,12 +20,12 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 w-full border-b border-border/60 bg-background/85 backdrop-blur supports-[backdrop-filter]:bg-background/70">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link to="/" className="flex items-center gap-2.5" aria-label="Ondo Cocoa MSP home">
+        <Link to="/" className="flex items-center gap-2.5" aria-label="Ondo Sustainable Cocoa MSP home">
           <span className="flex h-9 w-9 items-center justify-center rounded-md gradient-hero text-primary-foreground">
             <Leaf className="h-5 w-5" />
           </span>
           <span className="flex flex-col leading-tight">
-            <span className="font-display text-sm font-semibold text-foreground">Ondo Cocoa MSP</span>
+            <span className="font-display text-sm font-semibold text-foreground">Ondo Sustainable Cocoa MSP</span>
             <span className="text-[10px] uppercase tracking-wider text-muted-foreground">Multi-Stakeholder Platform</span>
           </span>
         </Link>

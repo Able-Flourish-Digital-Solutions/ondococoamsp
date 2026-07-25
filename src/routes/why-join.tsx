@@ -10,9 +10,9 @@ import {
 export const Route = createFileRoute("/why-join")({
   head: () => ({
     meta: [
-      { title: "Why Join — Ondo State Cocoa MSP" },
-      { name: "description", content: "Networking, capacity building, funding, market access and more — the benefits of joining the Ondo Cocoa MSP." },
-      { property: "og:title", content: "Why Join the Ondo Cocoa MSP" },
+      { title: "Why Join — Ondo State Sustainable Cocoa MSP" },
+      { name: "description", content: "Networking, capacity building, funding, market access and more — the benefits of joining the Ondo State Sustainable Cocoa MSP." },
+      { property: "og:title", content: "Why Join the Ondo State Sustainable Cocoa MSP" },
       { property: "og:description", content: "Ten reasons stakeholders across the value chain choose to join the platform." },
     ],
   }),

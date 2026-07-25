@@ -14,8 +14,8 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/resources")({
   head: () => ({
     meta: [
-      { title: "Resources — Ondo State Cocoa MSP" },
-      { name: "description", content: "Download meeting reports, policy documents, training manuals and research publications from the Ondo Cocoa MSP." },
+      { title: "Resources — Ondo State Sustainable Cocoa MSP" },
+      { name: "description", content: "Download meeting reports, policy documents, training manuals and research publications from the Ondo State Sustainable Cocoa MSP." },
       { property: "og:title", content: "MSP Resource Library" },
       { property: "og:description", content: "Reports, policies, training manuals and research publications." },
     ],

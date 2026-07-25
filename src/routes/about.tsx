@@ -4,13 +4,14 @@ import {
   Handshake, Sprout, Leaf, HeartHandshake, FlaskConical, Users2,
   Store, Landmark, Smartphone, CloudSun,
 } from "lucide-react";
+import steeringImg from "@/assets/msp-steering-executives.jpg.asset.json";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
       { title: "About the MSP — Ondo State Cocoa Platform" },
-      { name: "description", content: "Learn about the vision, mission and objectives of the Ondo State Cocoa Multi-Stakeholder Platform." },
-      { property: "og:title", content: "About the Ondo State Cocoa MSP" },
+      { name: "description", content: "Learn about the vision, mission and objectives of the Ondo State Sustainable Cocoa Multi-Stakeholder Platform." },
+      { property: "og:title", content: "About the Ondo State Sustainable Cocoa MSP" },
       { property: "og:description", content: "Vision, mission and ten strategic objectives guiding the platform." },
     ],
   }),
@@ -73,7 +74,7 @@ function About() {
             every stakeholder to drive progress in areas such as value chain
             development, policy advocacy, climate-smart agriculture, digital
             inclusion, research and innovation, farmer livelihoods, and sustainable
-            cocoa production. The Ondo State Cocoa MSP serves as a coordination
+            cocoa production. The Ondo State Sustainable Cocoa MSP serves as a coordination
             platform that promotes dialogue, joint decision-making, knowledge
             sharing and partnerships aimed at improving cocoa standards,
             productivity, market access and sustainability.
@@ -113,6 +114,27 @@ function About() {
               <p className="mt-4 text-sm font-medium text-foreground">{t}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      <section id="leadership" className="border-t border-border/60 bg-card/40">
+        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+          <SectionHeading
+            eyebrow="Leadership"
+            title="Steering Committee"
+            description="The newly elected Steering Committee executives of the Sustainable Cocoa Multi-Stakeholder Platform (MSP), Ondo State."
+          />
+          <figure className="mt-10 overflow-hidden rounded-3xl border border-border bg-card shadow-sm">
+            <img
+              src={steeringImg.url}
+              alt="Newly elected Steering Committee executives of the Sustainable Cocoa MSP, Ondo State"
+              loading="lazy"
+              className="h-auto w-full object-cover"
+            />
+            <figcaption className="px-6 py-4 text-sm text-muted-foreground">
+              Steering Committee executives, inaugurated on 23 July 2026 at Royal Bird Hotel and Towers, Akure.
+            </figcaption>
+          </figure>
         </div>
       </section>
     </>

@@ -10,9 +10,9 @@ import { MEMBERSHIP_FORM_URL, MEMBERSHIP_PARTNERS } from "@/lib/membership";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Ondo State Cocoa MSP — Strengthening the Cocoa Value Chain" },
+      { title: "Ondo State Sustainable Cocoa MSP — Strengthening the Cocoa Value Chain" },
       { name: "description", content: "A coordination platform uniting government, farmers, private sector and partners to advance sustainable cocoa production in Ondo State." },
-      { property: "og:title", content: "Ondo State Cocoa MSP — Strengthening the Cocoa Value Chain" },
+      { property: "og:title", content: "Ondo State Sustainable Cocoa MSP — Strengthening the Cocoa Value Chain" },
       { property: "og:description", content: "A coordination platform uniting government, farmers, private sector and partners to advance sustainable cocoa production in Ondo State." },
     ],
   }),

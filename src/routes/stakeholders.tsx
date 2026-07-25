@@ -9,8 +9,8 @@ import {
 export const Route = createFileRoute("/stakeholders")({
   head: () => ({
     meta: [
-      { title: "Stakeholders — Ondo State Cocoa MSP" },
-      { name: "description", content: "The government, farmer, private sector, research and civil society groups that make up the Ondo Cocoa MSP." },
+      { title: "Stakeholders — Ondo State Sustainable Cocoa MSP" },
+      { name: "description", content: "The government, farmer, private sector, research and civil society groups that make up the Ondo State Sustainable Cocoa MSP." },
       { property: "og:title", content: "MSP Stakeholders" },
       { property: "og:description", content: "Meet the fourteen stakeholder groups shaping Ondo State's cocoa sector." },
     ],
