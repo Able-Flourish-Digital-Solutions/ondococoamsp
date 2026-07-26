@@ -47,7 +47,6 @@ export function SiteFooter() {
         <FooterCol title="Contact">
           <FLink to="/contact">Get in touch</FLink>
           <span className="text-sm text-secondary-foreground/80">Secretariat, Akure, Ondo State</span>
-          <span className="text-sm text-secondary-foreground/80">info@ondococoamsp.ng</span>
           <a
             href={MEMBERSHIP_FORM_URL}
             target="_blank"

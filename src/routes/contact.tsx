@@ -82,7 +82,7 @@ function Contact() {
               </>
             }
           />
-          <InfoRow Icon={Mail} title="Email" body="info@ondococoamsp.ng" />
+          <InfoRow Icon={Mail} title="Email" body="To be confirmed" />
 
           <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-sm">
             <iframe
