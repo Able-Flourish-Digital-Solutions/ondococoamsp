@@ -14,7 +14,7 @@ import { Route as TermsRouteImport } from './routes/terms'
 import { Route as StakeholdersRouteImport } from './routes/stakeholders'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ResourcesRouteImport } from './routes/resources'
-import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as PriorityAreasRouteImport } from './routes/priority-areas'
 import { Route as NewsRouteImport } from './routes/news'
 import { Route as ContactRouteImport } from './routes/contact'
@@ -47,9 +47,9 @@ const ResourcesRoute = ResourcesRouteImport.update({
   path: '/resources',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PrivacyRoute = PrivacyRouteImport.update({
-  id: '/privacy',
-  path: '/privacy',
+const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
+  id: '/privacy-policy',
+  path: '/privacy-policy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PriorityAreasRoute = PriorityAreasRouteImport.update({
@@ -89,7 +89,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/news': typeof NewsRouteWithChildren
   '/priority-areas': typeof PriorityAreasRoute
-  '/privacy': typeof PrivacyRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
   '/resources': typeof ResourcesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/stakeholders': typeof StakeholdersRoute
@@ -103,7 +103,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/news': typeof NewsRouteWithChildren
   '/priority-areas': typeof PriorityAreasRoute
-  '/privacy': typeof PrivacyRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
   '/resources': typeof ResourcesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/stakeholders': typeof StakeholdersRoute
@@ -118,7 +118,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/news': typeof NewsRouteWithChildren
   '/priority-areas': typeof PriorityAreasRoute
-  '/privacy': typeof PrivacyRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
   '/resources': typeof ResourcesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/stakeholders': typeof StakeholdersRoute
@@ -134,7 +134,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/news'
     | '/priority-areas'
-    | '/privacy'
+    | '/privacy-policy'
     | '/resources'
     | '/sitemap.xml'
     | '/stakeholders'
@@ -148,7 +148,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/news'
     | '/priority-areas'
-    | '/privacy'
+    | '/privacy-policy'
     | '/resources'
     | '/sitemap.xml'
     | '/stakeholders'
@@ -162,7 +162,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/news'
     | '/priority-areas'
-    | '/privacy'
+    | '/privacy-policy'
     | '/resources'
     | '/sitemap.xml'
     | '/stakeholders'
@@ -177,7 +177,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   NewsRoute: typeof NewsRouteWithChildren
   PriorityAreasRoute: typeof PriorityAreasRoute
-  PrivacyRoute: typeof PrivacyRoute
+  PrivacyPolicyRoute: typeof PrivacyPolicyRoute
   ResourcesRoute: typeof ResourcesRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   StakeholdersRoute: typeof StakeholdersRoute
@@ -222,11 +222,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResourcesRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/privacy': {
-      id: '/privacy'
-      path: '/privacy'
-      fullPath: '/privacy'
-      preLoaderRoute: typeof PrivacyRouteImport
+    '/privacy-policy': {
+      id: '/privacy-policy'
+      path: '/privacy-policy'
+      fullPath: '/privacy-policy'
+      preLoaderRoute: typeof PrivacyPolicyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/priority-areas': {
@@ -290,7 +290,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   NewsRoute: NewsRouteWithChildren,
   PriorityAreasRoute: PriorityAreasRoute,
-  PrivacyRoute: PrivacyRoute,
+  PrivacyPolicyRoute: PrivacyPolicyRoute,
   ResourcesRoute: ResourcesRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   StakeholdersRoute: StakeholdersRoute,
