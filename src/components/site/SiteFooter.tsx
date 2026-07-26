@@ -18,18 +18,6 @@ export function SiteFooter() {
             Coordinating stakeholders across Ondo State's cocoa value chain to
             improve productivity, sustainability, and livelihoods.
           </p>
-          <div className="mt-5 flex gap-3">
-            {[Facebook, Twitter, Linkedin, Youtube].map((Icon, i) => (
-              <a
-                key={i}
-                href="#"
-                aria-label="Social link"
-                className="flex h-9 w-9 items-center justify-center rounded-md bg-secondary-foreground/10 transition-colors hover:bg-secondary-foreground/20"
-              >
-                <Icon className="h-4 w-4" />
-              </a>
-            ))}
-          </div>
         </div>
 
         <FooterCol title="About">
