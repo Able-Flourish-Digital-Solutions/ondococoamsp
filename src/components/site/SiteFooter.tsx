@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Facebook, Twitter, Linkedin, Youtube, Leaf } from "lucide-react";
+import { Leaf } from "lucide-react";
 import { MEMBERSHIP_FORM_URL, MEMBERSHIP_PARTNERS } from "@/lib/membership";
 
 export function SiteFooter() {
