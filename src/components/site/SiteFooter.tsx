@@ -63,8 +63,7 @@ export function SiteFooter() {
           <p>© {year} Ondo State Sustainable Cocoa Multi-Stakeholder Platform. All rights reserved.</p>
           <p className="text-secondary-foreground/80">{MEMBERSHIP_PARTNERS}</p>
           <div className="flex gap-5">
-            <Link to="/privacy" className="hover:text-secondary-foreground">Privacy Policy</Link>
-            <Link to="/terms" className="hover:text-secondary-foreground">Terms of Use</Link>
+            <Link to="/privacy-policy" className="hover:text-secondary-foreground">Privacy Policy</Link>
           </div>
         </div>
       </div>
