@@ -14,7 +14,6 @@ import { Route as TermsRouteImport } from './routes/terms'
 import { Route as StakeholdersRouteImport } from './routes/stakeholders'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ResourcesRouteImport } from './routes/resources'
-import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PriorityAreasRouteImport } from './routes/priority-areas'
 import { Route as NewsRouteImport } from './routes/news'
 import { Route as ContactRouteImport } from './routes/contact'
@@ -45,11 +44,6 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
 const ResourcesRoute = ResourcesRouteImport.update({
   id: '/resources',
   path: '/resources',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PrivacyRoute = PrivacyRouteImport.update({
-  id: '/privacy',
-  path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PriorityAreasRoute = PriorityAreasRouteImport.update({
@@ -89,7 +83,6 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/news': typeof NewsRouteWithChildren
   '/priority-areas': typeof PriorityAreasRoute
-  '/privacy': typeof PrivacyRoute
   '/resources': typeof ResourcesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/stakeholders': typeof StakeholdersRoute
@@ -103,7 +96,6 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/news': typeof NewsRouteWithChildren
   '/priority-areas': typeof PriorityAreasRoute
-  '/privacy': typeof PrivacyRoute
   '/resources': typeof ResourcesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/stakeholders': typeof StakeholdersRoute
@@ -118,7 +110,6 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/news': typeof NewsRouteWithChildren
   '/priority-areas': typeof PriorityAreasRoute
-  '/privacy': typeof PrivacyRoute
   '/resources': typeof ResourcesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/stakeholders': typeof StakeholdersRoute
@@ -134,7 +125,6 @@ export interface FileRouteTypes {
     | '/contact'
     | '/news'
     | '/priority-areas'
-    | '/privacy'
     | '/resources'
     | '/sitemap.xml'
     | '/stakeholders'
@@ -148,7 +138,6 @@ export interface FileRouteTypes {
     | '/contact'
     | '/news'
     | '/priority-areas'
-    | '/privacy'
     | '/resources'
     | '/sitemap.xml'
     | '/stakeholders'
@@ -162,7 +151,6 @@ export interface FileRouteTypes {
     | '/contact'
     | '/news'
     | '/priority-areas'
-    | '/privacy'
     | '/resources'
     | '/sitemap.xml'
     | '/stakeholders'
@@ -177,7 +165,6 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   NewsRoute: typeof NewsRouteWithChildren
   PriorityAreasRoute: typeof PriorityAreasRoute
-  PrivacyRoute: typeof PrivacyRoute
   ResourcesRoute: typeof ResourcesRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   StakeholdersRoute: typeof StakeholdersRoute
@@ -220,13 +207,6 @@ declare module '@tanstack/react-router' {
       path: '/resources'
       fullPath: '/resources'
       preLoaderRoute: typeof ResourcesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/privacy': {
-      id: '/privacy'
-      path: '/privacy'
-      fullPath: '/privacy'
-      preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/priority-areas': {
@@ -290,7 +270,6 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   NewsRoute: NewsRouteWithChildren,
   PriorityAreasRoute: PriorityAreasRoute,
-  PrivacyRoute: PrivacyRoute,
   ResourcesRoute: ResourcesRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   StakeholdersRoute: StakeholdersRoute,
