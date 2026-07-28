@@ -44,10 +44,6 @@ function PrivacyPolicyPage() {
             <dt className="font-semibold text-foreground/80">Last updated</dt>
             <dd>26 July 2026</dd>
           </div>
-          <div>
-            <dt className="font-semibold text-foreground/80">Last reviewed by counsel</dt>
-            <dd className="italic">Pending</dd>
-          </div>
         </dl>
       </header>
 
