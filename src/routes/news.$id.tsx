@@ -1,7 +1,13 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { ArrowLeft } from "lucide-react";
-import { newsDetailOptions, type NewsRow } from "@/lib/content";
+import { ArrowLeft, ExternalLink } from "lucide-react";
+import {
+  COCOA_QUALITY_DIALOGUE_ID,
+  NEWS_GALLERIES,
+  NEWS_SOURCE_URLS,
+  newsDetailOptions,
+  type NewsRow,
+} from "@/lib/content";
 import groupImg1 from "@/assets/msp-inauguration-group-1.jpg.asset.json";
 import groupImg2 from "@/assets/msp-inauguration-group-2.jpg.asset.json";
 
@@ -52,6 +58,8 @@ function NewsDetail() {
   const { id } = Route.useParams();
   const { data } = useSuspenseQuery(newsDetailOptions(id));
   if (!data) return null;
+  const gallery = NEWS_GALLERIES[data.id] ?? [];
+  const sourceUrl = NEWS_SOURCE_URLS[data.id];
   return (
     <article className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
       <Link to="/news" className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-primary">
@@ -65,7 +73,11 @@ function NewsDetail() {
       {data.cover_image_url && (
         <img
           src={data.cover_image_url}
-          alt=""
+          alt={
+            data.id === COCOA_QUALITY_DIALOGUE_ID
+              ? "Public and private cocoa-sector stakeholders gathered for the cocoa quality standards dialogue in Akure"
+              : ""
+          }
           className="mt-10 aspect-[16/9] w-full rounded-2xl object-cover"
         />
       )}
@@ -74,6 +86,40 @@ function NewsDetail() {
           <p key={i} className="mb-5">{p}</p>
         ))}
       </div>
+      {gallery.length > 0 && (
+        <section className="mt-12" aria-labelledby="event-gallery-heading">
+          <h2 id="event-gallery-heading" className="text-2xl font-semibold">
+            Event gallery
+          </h2>
+          <div className="mt-5 grid gap-4 sm:grid-cols-2">
+            {gallery.map((image, index) => (
+              <figure
+                key={image.src}
+                className={`overflow-hidden rounded-2xl border border-border bg-card ${index === 0 ? "sm:col-span-2" : ""}`}
+              >
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  loading="lazy"
+                  className="aspect-[16/9] h-full w-full object-cover"
+                />
+              </figure>
+            ))}
+          </div>
+        </section>
+      )}
+      {sourceUrl && (
+        <p className="mt-10 border-t border-border pt-6 text-sm text-muted-foreground">
+          <a
+            href={sourceUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 font-medium text-primary hover:underline"
+          >
+            Read the original LinkedIn report <ExternalLink className="h-4 w-4" />
+          </a>
+        </p>
+      )}
       {data.title.toLowerCase().includes("inauguration") && (
         <div className="mt-10 grid gap-4 sm:grid-cols-2">
           <figure className="overflow-hidden rounded-2xl border border-border bg-card">
