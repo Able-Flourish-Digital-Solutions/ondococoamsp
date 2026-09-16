@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, Outlet, useRouterState } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { Calendar, MapPin, ArrowRight } from "lucide-react";
 import { SectionHeading } from "@/components/site/SectionHeading";
@@ -27,6 +27,14 @@ export const Route = createFileRoute("/news")({
 });
 
 function NewsPage() {
+  const pathname = useRouterState({
+    select: (state) => state.location.pathname,
+  });
+
+  if (pathname.startsWith("/news/")) {
+    return <Outlet />;
+  }
+
   return (
     <>
       <NewsSection />
