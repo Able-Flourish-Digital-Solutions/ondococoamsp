@@ -5,7 +5,7 @@ import { SectionHeading } from "@/components/site/SectionHeading";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
   newsListOptions, upcomingEventsOptions,
-  EVENT_TYPE_LABEL, type EventRow,
+  EVENT_TYPE_LABEL, resolveCoverImage, type EventRow,
 } from "@/lib/content";
 
 export const Route = createFileRoute("/news")({
@@ -62,7 +62,7 @@ function NewsSection() {
               <div className="aspect-[16/10] overflow-hidden bg-muted">
                 {n.cover_image_url ? (
                   <img
-                    src={n.cover_image_url}
+                    src={resolveCoverImage(n)}
                     alt=""
                     loading="lazy"
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"

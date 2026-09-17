@@ -6,10 +6,12 @@ import {
   NEWS_GALLERIES,
   NEWS_SOURCE_URLS,
   newsDetailOptions,
+  resolveCoverImage,
   type NewsRow,
 } from "@/lib/content";
-import groupImg1 from "@/assets/msp-inauguration-group-1.jpg.asset.json";
-import groupImg2 from "@/assets/msp-inauguration-group-2.jpg.asset.json";
+
+const INAUGURATION_GROUP_PHOTO_1 = "/news/msp-inauguration/group-1.jpg";
+const INAUGURATION_GROUP_PHOTO_2 = "/news/msp-inauguration/group-2.jpg";
 
 export const Route = createFileRoute("/news/$id")({
   head: ({ loaderData }: { loaderData?: NewsRow }) => {
@@ -18,7 +20,7 @@ export const Route = createFileRoute("/news/$id")({
     }
     const title = `${loaderData.title} — Ondo State Sustainable Cocoa MSP`;
     const desc = loaderData.excerpt ?? loaderData.title;
-    const img = loaderData.cover_image_url;
+    const img = resolveCoverImage(loaderData);
     return {
       meta: [
         { title },
@@ -72,7 +74,7 @@ function NewsDetail() {
       {data.excerpt && <p className="mt-4 text-lg text-muted-foreground">{data.excerpt}</p>}
       {data.cover_image_url && (
         <img
-          src={data.cover_image_url}
+          src={resolveCoverImage(data)}
           alt={
             data.id === COCOA_QUALITY_DIALOGUE_ID
               ? "Public and private cocoa-sector stakeholders gathered for the cocoa quality standards dialogue in Akure"
@@ -124,7 +126,7 @@ function NewsDetail() {
         <div className="mt-10 grid gap-4 sm:grid-cols-2">
           <figure className="overflow-hidden rounded-2xl border border-border bg-card">
             <img
-              src={groupImg1.url}
+              src={INAUGURATION_GROUP_PHOTO_1}
               alt="Participants at the Cocoa Stakeholder Meeting and Inauguration in Akure"
               loading="lazy"
               className="h-full w-full object-cover"
@@ -132,7 +134,7 @@ function NewsDetail() {
           </figure>
           <figure className="overflow-hidden rounded-2xl border border-border bg-card">
             <img
-              src={groupImg2.url}
+              src={INAUGURATION_GROUP_PHOTO_2}
               alt="Stakeholders convened at the Sustainable Cocoa MSP inauguration, Royal Bird Hotel, Akure"
               loading="lazy"
               className="h-full w-full object-cover"

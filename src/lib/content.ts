@@ -17,9 +17,9 @@ const cocoaQualityDialogue: NewsRow = {
   body: "Stakeholders from across the public and private sectors convened in Akure for a dialogue focused on the enforcement of cocoa quality standards in Ondo State. The engagement provided a platform for participants to examine the shared responsibilities required to protect the quality, reputation and competitiveness of cocoa produced in the state.\n\nThe dialogue highlighted the importance of cooperation across the cocoa value chain. Effective quality assurance depends on coordinated action among government institutions, farmers, produce merchants, processors, exporters and other industry actors. It also requires clear standards, consistent monitoring and practical awareness among those who handle cocoa from production through marketing.\n\nFor the Ondo State Sustainable Cocoa Multi-Stakeholder Platform, the engagement reflects the value of bringing diverse actors together around issues that cannot be resolved by any single institution. Continued public-private dialogue can help build a common understanding of quality requirements, identify implementation challenges and encourage responsible practices throughout the value chain.\n\nThe meeting in Akure therefore represents an important contribution to the continuing effort to strengthen cocoa quality governance and sustain confidence in Ondo State cocoa.",
   cover_image_url: "/news/cocoa-quality-dialogue/stakeholder-group.webp",
   is_published: true,
-  published_at: "2026-09-16T12:00:00+01:00",
-  created_at: "2026-09-16T12:00:00+01:00",
-  updated_at: "2026-09-16T12:00:00+01:00",
+  published_at: "2026-09-01T12:00:00+01:00",
+  created_at: "2026-09-01T12:00:00+01:00",
+  updated_at: "2026-09-01T12:00:00+01:00",
 };
 
 export const NEWS_GALLERIES: Record<string, Array<{ src: string; alt: string }>> = {
@@ -51,6 +51,20 @@ export const NEWS_SOURCE_URLS: Record<string, string> = {
   [COCOA_QUALITY_DIALOGUE_ID]:
     "https://www.linkedin.com/pulse/stakeholders-convene-akure-public-private-malre",
 };
+
+// The MSP inauguration article's cover image was stored with a Lovable-sandbox-only
+// `/__l5e/assets-v1/...` path that 404s once deployed to Vercel. Override it with the
+// same photo re-hosted as a static public asset.
+const NEWS_COVER_OVERRIDES: Record<string, string> = {
+  "f3e6072b-97c7-498d-a800-17ed169e139a": "/news/msp-inauguration/group-1.jpg",
+};
+
+export function resolveCoverImage(row: {
+  id: string;
+  cover_image_url: string | null;
+}): string | null {
+  return NEWS_COVER_OVERRIDES[row.id] ?? row.cover_image_url;
+}
 
 export const RESOURCE_CATEGORIES = [
   { value: "meeting_report", label: "Meeting Reports" },
