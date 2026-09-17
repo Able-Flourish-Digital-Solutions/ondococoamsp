@@ -4,17 +4,29 @@ import { Calendar, MapPin, ArrowRight } from "lucide-react";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
-  newsListOptions, upcomingEventsOptions,
-  EVENT_TYPE_LABEL, resolveCoverImage, type EventRow,
+  newsListOptions,
+  upcomingEventsOptions,
+  EVENT_TYPE_LABEL,
+  resolveCoverImage,
+  type EventRow,
 } from "@/lib/content";
+import { getErrorMessage } from "@/lib/utils";
 
 export const Route = createFileRoute("/news")({
   head: () => ({
     meta: [
       { title: "News & Events — Ondo State Sustainable Cocoa MSP" },
-      { name: "description", content: "Latest news, updates and upcoming events from the Ondo State Sustainable Cocoa Multi-Stakeholder Platform." },
+      {
+        name: "description",
+        content:
+          "Latest news, updates and upcoming events from the Ondo State Sustainable Cocoa Multi-Stakeholder Platform.",
+      },
       { property: "og:title", content: "News & Events" },
-      { property: "og:description", content: "Announcements, meetings, trainings, forums and dialogues from the Ondo State Sustainable Cocoa MSP." },
+      {
+        property: "og:description",
+        content:
+          "Announcements, meetings, trainings, forums and dialogues from the Ondo State Sustainable Cocoa MSP.",
+      },
     ],
   }),
   loader: ({ context }) => {
@@ -22,7 +34,7 @@ export const Route = createFileRoute("/news")({
     context.queryClient.ensureQueryData(upcomingEventsOptions());
   },
   component: NewsPage,
-  errorComponent: ({ error }) => <ErrorState message={error.message} />,
+  errorComponent: ({ error }) => <ErrorState message={getErrorMessage(error)} />,
   pendingComponent: NewsSkeleton,
 });
 
@@ -63,7 +75,7 @@ function NewsSection() {
                 {n.cover_image_url ? (
                   <img
                     src={resolveCoverImage(n)}
-                    alt=""
+                    alt={n.title}
                     loading="lazy"
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
@@ -71,12 +83,21 @@ function NewsSection() {
               </div>
               <div className="p-6">
                 <p className="text-xs uppercase tracking-wider text-muted-foreground">
-                  {new Date(n.published_at).toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" })}
+                  {new Date(n.published_at).toLocaleDateString(undefined, {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}
                 </p>
-                <h3 className="mt-2 line-clamp-2 text-lg font-semibold text-foreground">{n.title}</h3>
-                {n.excerpt && <p className="mt-2 line-clamp-3 text-sm text-muted-foreground">{n.excerpt}</p>}
+                <h3 className="mt-2 line-clamp-2 text-lg font-semibold text-foreground">
+                  {n.title}
+                </h3>
+                {n.excerpt && (
+                  <p className="mt-2 line-clamp-3 text-sm text-muted-foreground">{n.excerpt}</p>
+                )}
                 <span className="mt-4 inline-flex items-center text-sm font-medium text-primary">
-                  Read more <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  Read more{" "}
+                  <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </span>
               </div>
             </Link>
@@ -89,10 +110,13 @@ function NewsSection() {
 
 function EventsSection() {
   const { data: events } = useSuspenseQuery(upcomingEventsOptions());
-  const grouped = events.reduce<Record<EventRow["event_type"], EventRow[]>>((acc, e) => {
-    (acc[e.event_type] ||= []).push(e as EventRow);
-    return acc;
-  }, {} as Record<EventRow["event_type"], EventRow[]>);
+  const grouped = events.reduce<Record<EventRow["event_type"], EventRow[]>>(
+    (acc, e) => {
+      (acc[e.event_type] ||= []).push(e as EventRow);
+      return acc;
+    },
+    {} as Record<EventRow["event_type"], EventRow[]>,
+  );
 
   return (
     <section className="border-t border-border/60 bg-card/40">
@@ -109,12 +133,19 @@ function EventsSection() {
                 </h3>
                 <div className="mt-4 grid gap-4 md:grid-cols-2">
                   {grouped[type].map((e) => (
-                    <div key={e.id} className="rounded-2xl border border-border bg-card p-6 shadow-sm">
+                    <div
+                      key={e.id}
+                      className="rounded-2xl border border-border bg-card p-6 shadow-sm"
+                    >
                       <h4 className="text-lg font-semibold text-foreground">{e.title}</h4>
                       <div className="mt-3 flex flex-wrap gap-4 text-sm text-muted-foreground">
                         <span className="inline-flex items-center gap-1.5">
                           <Calendar className="h-4 w-4" />
-                          {new Date(e.start_time).toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" })}
+                          {new Date(e.start_time).toLocaleDateString(undefined, {
+                            year: "numeric",
+                            month: "short",
+                            day: "numeric",
+                          })}
                         </span>
                         <span className="inline-flex items-center gap-1.5">
                           <MapPin className="h-4 w-4" />

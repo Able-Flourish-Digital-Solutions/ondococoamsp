@@ -3,27 +3,64 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 import { ArrowRight, Users, Target, Sparkles, Calendar, UserPlus } from "lucide-react";
 import { Hero } from "@/components/site/Hero";
 import { SectionHeading } from "@/components/site/SectionHeading";
+import { StakeholderTrustStrip } from "@/components/site/StakeholderTrustStrip";
+import { PartnerLogoCloud } from "@/components/site/PartnerLogoCloud";
+import { PlatformStats } from "@/components/site/PlatformStats";
+import { UpcomingEvents } from "@/components/site/UpcomingEvents";
+import { EngagementCTA } from "@/components/site/EngagementCTA";
 import { Button } from "@/components/ui/button";
-import { newsListOptions } from "@/lib/content";
+import { newsListOptions, upcomingEventsOptions, resolveCoverImage } from "@/lib/content";
 import { MEMBERSHIP_FORM_URL, MEMBERSHIP_PARTNERS } from "@/lib/membership";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Ondo State Sustainable Cocoa MSP — Strengthening the Cocoa Value Chain" },
-      { name: "description", content: "A coordination platform uniting government, farmers, private sector and partners to advance sustainable cocoa production in Ondo State." },
-      { property: "og:title", content: "Ondo State Sustainable Cocoa MSP — Strengthening the Cocoa Value Chain" },
-      { property: "og:description", content: "A coordination platform uniting government, farmers, private sector and partners to advance sustainable cocoa production in Ondo State." },
+      {
+        name: "description",
+        content:
+          "A coordination platform uniting government, farmers, private sector and partners to advance sustainable cocoa production in Ondo State.",
+      },
+      {
+        property: "og:title",
+        content: "Ondo State Sustainable Cocoa MSP — Strengthening the Cocoa Value Chain",
+      },
+      {
+        property: "og:description",
+        content:
+          "A coordination platform uniting government, farmers, private sector and partners to advance sustainable cocoa production in Ondo State.",
+      },
     ],
   }),
-  loader: ({ context }) => context.queryClient.ensureQueryData(newsListOptions(3)),
+  loader: ({ context }) => {
+    context.queryClient.ensureQueryData(newsListOptions(3));
+    context.queryClient.ensureQueryData(upcomingEventsOptions());
+  },
   component: Index,
 });
 
 const previews = [
-  { to: "/about", label: "About", title: "What is the MSP?", desc: "A collaborative framework to co-create solutions for the cocoa sector.", Icon: Users },
-  { to: "/priority-areas", label: "Priority Areas", title: "Where we focus", desc: "Twelve priority areas from sustainable production to market linkages.", Icon: Target },
-  { to: "/why-join", label: "Why Join", title: "Benefits of joining", desc: "Networking, capacity building, funding and policy engagement.", Icon: Sparkles },
+  {
+    to: "/about",
+    label: "About",
+    title: "What is the MSP?",
+    desc: "A collaborative framework to co-create solutions for the cocoa sector.",
+    Icon: Users,
+  },
+  {
+    to: "/priority-areas",
+    label: "Priority Areas",
+    title: "Where we focus",
+    desc: "Twelve priority areas from sustainable production to market linkages.",
+    Icon: Target,
+  },
+  {
+    to: "/why-join",
+    label: "Why Join",
+    title: "Benefits of joining",
+    desc: "Networking, capacity building, funding and policy engagement.",
+    Icon: Sparkles,
+  },
 ];
 
 function Index() {
@@ -31,8 +68,13 @@ function Index() {
     <>
       <Hero />
 
+      <StakeholderTrustStrip />
+
       {/* About preview */}
-      <section id="about-preview" className="mx-auto max-w-7xl scroll-mt-20 px-4 py-20 sm:px-6 lg:px-8">
+      <section
+        id="about-preview"
+        className="mx-auto max-w-7xl scroll-mt-20 px-4 py-20 sm:px-6 lg:px-8"
+      >
         <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
           <div>
             <SectionHeading
@@ -42,28 +84,20 @@ function Index() {
             />
             <div className="mt-8 flex flex-wrap gap-3">
               <Button asChild>
-                <Link to="/about">Learn more <ArrowRight className="ml-1.5 h-4 w-4" /></Link>
+                <Link to="/about">
+                  Learn more <ArrowRight className="ml-1.5 h-4 w-4" />
+                </Link>
               </Button>
               <Button asChild variant="outline">
                 <Link to="/stakeholders">Meet the stakeholders</Link>
               </Button>
             </div>
           </div>
-          <div className="grid gap-4 sm:grid-cols-2">
-            {[
-              { k: "10", v: "Strategic objectives" },
-              { k: "14", v: "Stakeholder groups" },
-              { k: "12", v: "Priority areas" },
-              { k: "1", v: "Shared vision" },
-            ].map((s) => (
-              <div key={s.v} className="rounded-2xl border border-border bg-card p-6 shadow-sm">
-                <p className="font-display text-4xl font-semibold text-gradient">{s.k}</p>
-                <p className="mt-1 text-sm text-muted-foreground">{s.v}</p>
-              </div>
-            ))}
-          </div>
+          <PlatformStats />
         </div>
       </section>
+
+      <PartnerLogoCloud />
 
       {/* Preview cards */}
       <section className="border-y border-border/60 bg-card/40">
@@ -71,15 +105,22 @@ function Index() {
           <SectionHeading eyebrow="Explore" title="Discover the platform" align="center" />
           <div className="mt-12 grid gap-6 md:grid-cols-3">
             {previews.map((p) => (
-              <Link key={p.to} to={p.to} className="group rounded-2xl border border-border bg-card p-7 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg">
+              <Link
+                key={p.to}
+                to={p.to}
+                className="group rounded-2xl border border-border bg-card p-7 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg"
+              >
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl gradient-hero text-primary-foreground">
                   <p.Icon className="h-5 w-5" />
                 </div>
-                <p className="mt-6 text-xs font-semibold uppercase tracking-wider text-primary">{p.label}</p>
+                <p className="mt-6 text-xs font-semibold uppercase tracking-wider text-primary">
+                  {p.label}
+                </p>
                 <h3 className="mt-1 text-xl font-semibold text-foreground">{p.title}</h3>
                 <p className="mt-2 text-sm text-muted-foreground">{p.desc}</p>
                 <span className="mt-5 inline-flex items-center text-sm font-medium text-primary">
-                  Read more <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  Read more{" "}
+                  <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </span>
               </Link>
             ))}
@@ -90,20 +131,28 @@ function Index() {
       {/* Latest news placeholder */}
       <LatestNews />
 
+      <UpcomingEvents />
+
+      <EngagementCTA />
+
       {/* Membership */}
-      <section id="membership" className="mx-auto max-w-7xl scroll-mt-20 px-4 pt-4 pb-16 sm:px-6 lg:px-8">
+      <section
+        id="membership"
+        className="mx-auto max-w-7xl scroll-mt-20 px-4 pt-4 pb-16 sm:px-6 lg:px-8"
+      >
         <div className="rounded-3xl border border-border bg-card p-8 shadow-sm sm:p-12">
           <div className="grid gap-10 lg:grid-cols-5 lg:items-center">
             <div className="lg:col-span-3">
-              <p className="text-xs font-semibold uppercase tracking-wider text-primary">Membership</p>
+              <p className="text-xs font-semibold uppercase tracking-wider text-primary">
+                Membership
+              </p>
               <h2 className="mt-2 font-display text-3xl font-semibold text-foreground sm:text-4xl">
                 Register for OSCP Membership
               </h2>
               <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-                The OSCP brings together farmers, processors, researchers,
-                government agencies, NGOs, financiers, and private sector actors
-                to strengthen the cocoa value chain in Ondo State. Join as a
-                Core/Executive Member, Support Member, Observer, or Thematic
+                The OSCP brings together farmers, processors, researchers, government agencies,
+                NGOs, financiers, and private sector actors to strengthen the cocoa value chain in
+                Ondo State. Join as a Core/Executive Member, Support Member, Observer, or Thematic
                 Member.
               </p>
               <div className="mt-6 flex flex-wrap items-center gap-3">
@@ -115,8 +164,8 @@ function Index() {
                 </Button>
               </div>
               <p className="mt-4 text-xs text-muted-foreground">
-                Registration is managed by the OSCP Secretariat via a Google
-                Form. Your information will be reviewed for platform membership.
+                Registration is managed by the OSCP Secretariat via a Google Form. Your information
+                will be reviewed for platform membership.
               </p>
             </div>
             <div className="lg:col-span-2">
@@ -142,16 +191,21 @@ function Index() {
         <div className="relative overflow-hidden rounded-3xl gradient-hero px-8 py-16 text-center text-primary-foreground sm:px-16">
           <h2 className="text-3xl text-white sm:text-4xl">Be part of Ondo's cocoa future</h2>
           <p className="mx-auto mt-4 max-w-2xl text-base text-white/85">
-            Join a coordinated network of stakeholders working together to build a
-            sustainable, competitive and inclusive cocoa sector.
+            Join a coordinated network of stakeholders working together to build a sustainable,
+            competitive and inclusive cocoa sector.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Button asChild size="lg" className="bg-white text-primary hover:bg-white/90">
               <a href={MEMBERSHIP_FORM_URL} target="_blank" rel="noopener noreferrer">
-                Register for OSCP Membership
+                Become a Member
               </a>
             </Button>
-            <Button asChild size="lg" variant="outline" className="border-white/40 bg-transparent text-white hover:bg-white/10 hover:text-white">
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="border-white/40 bg-transparent text-white hover:bg-white/10 hover:text-white"
+            >
               <Link to="/why-join">See the benefits</Link>
             </Button>
           </div>
@@ -167,7 +221,10 @@ function LatestNews() {
     <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
       <div className="flex items-end justify-between gap-6">
         <SectionHeading eyebrow="Latest news" title="News & Events" />
-        <Link to="/news" className="hidden text-sm font-medium text-primary hover:underline sm:inline-flex sm:items-center">
+        <Link
+          to="/news"
+          className="hidden text-sm font-medium text-primary hover:underline sm:inline-flex sm:items-center"
+        >
           View all <ArrowRight className="ml-1 h-4 w-4" />
         </Link>
       </div>
@@ -178,8 +235,12 @@ function LatestNews() {
               <div className="flex h-40 items-center justify-center rounded-lg bg-muted">
                 <Calendar className="h-8 w-8 text-muted-foreground/50" />
               </div>
-              <p className="mt-4 text-xs uppercase tracking-wider text-muted-foreground">Coming soon</p>
-              <p className="mt-1 text-base font-medium text-foreground/70">News updates will appear here.</p>
+              <p className="mt-4 text-xs uppercase tracking-wider text-muted-foreground">
+                Coming soon
+              </p>
+              <p className="mt-1 text-base font-medium text-foreground/70">
+                News updates will appear here.
+              </p>
             </div>
           ))}
         </div>
@@ -194,15 +255,28 @@ function LatestNews() {
             >
               <div className="aspect-[16/10] overflow-hidden bg-muted">
                 {n.cover_image_url && (
-                  <img src={n.cover_image_url} alt="" loading="lazy" className="h-full w-full object-cover transition-transform group-hover:scale-105" />
+                  <img
+                    src={resolveCoverImage(n)}
+                    alt={n.title}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform group-hover:scale-105"
+                  />
                 )}
               </div>
               <div className="p-6">
                 <p className="text-xs uppercase tracking-wider text-muted-foreground">
-                  {new Date(n.published_at).toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" })}
+                  {new Date(n.published_at).toLocaleDateString(undefined, {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}
                 </p>
-                <h3 className="mt-2 line-clamp-2 text-base font-semibold text-foreground">{n.title}</h3>
-                {n.excerpt && <p className="mt-2 line-clamp-2 text-sm text-muted-foreground">{n.excerpt}</p>}
+                <h3 className="mt-2 line-clamp-2 text-base font-semibold text-foreground">
+                  {n.title}
+                </h3>
+                {n.excerpt && (
+                  <p className="mt-2 line-clamp-2 text-sm text-muted-foreground">{n.excerpt}</p>
+                )}
               </div>
             </Link>
           ))}

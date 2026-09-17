@@ -1,8 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import {
-  Handshake, Sprout, Leaf, HeartHandshake, FlaskConical, Users2,
-  Store, Landmark, Smartphone, CloudSun,
+  Handshake,
+  Sprout,
+  Leaf,
+  HeartHandshake,
+  FlaskConical,
+  Users2,
+  Store,
+  Landmark,
+  Smartphone,
+  CloudSun,
 } from "lucide-react";
 import steeringImg from "@/assets/msp-steering-executives.jpg.asset.json";
 
@@ -10,18 +18,31 @@ export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
       { title: "About the MSP — Ondo State Cocoa Platform" },
-      { name: "description", content: "Learn about the vision, mission and objectives of the Ondo State Sustainable Cocoa Multi-Stakeholder Platform." },
+      {
+        name: "description",
+        content:
+          "Learn about the vision, mission and objectives of the Ondo State Sustainable Cocoa Multi-Stakeholder Platform.",
+      },
       { property: "og:title", content: "About the Ondo State Sustainable Cocoa MSP" },
-      { property: "og:description", content: "Vision, mission and ten strategic objectives guiding the platform." },
+      {
+        property: "og:description",
+        content: "Vision, mission and ten strategic objectives guiding the platform.",
+      },
     ],
   }),
   component: About,
 });
 
 const stakeholderList = [
-  "Government agencies", "Private sector companies", "Farmer organizations",
-  "NGOs", "International organizations", "Research institutions",
-  "Universities", "Civil society organizations", "Financial institutions",
+  "Government agencies",
+  "Private sector companies",
+  "Farmer organizations",
+  "NGOs",
+  "International organizations",
+  "Research institutions",
+  "Universities",
+  "Civil society organizations",
+  "Financial institutions",
   "Youth and women groups",
 ];
 
@@ -54,9 +75,18 @@ function About() {
         <SectionHeading eyebrow="What is MSP?" title="A shared table for shared challenges" />
         <div className="mt-8 space-y-6 text-base leading-relaxed text-muted-foreground">
           <p>
-            A Multi-Stakeholder Platform (MSP) is a collaborative framework that
-            brings together diverse groups of stakeholders to address common
-            challenges, share knowledge, and co-create solutions.
+            A Multi-Stakeholder Platform (MSP) is a collaborative framework that brings together
+            diverse groups of stakeholders to address common challenges, share knowledge, and
+            co-create solutions. The Ondo State Sustainable Cocoa Multi-Stakeholder Platform — OSCP
+            for short — applies this model to the cocoa sector.
+          </p>
+          <p>
+            Cocoa production in Ondo State involves many actors working largely on their own:
+            government agencies, farmers, cooperatives, processors, exporters, researchers,
+            financiers and civil society groups each hold a piece of the solution to productivity,
+            quality and sustainability challenges, but no single institution can address them alone.
+            OSCP exists to close that gap — bringing every actor to one table so efforts are
+            coordinated rather than duplicated or siloed.
           </p>
           <div>
             <p className="mb-3 font-medium text-foreground">Stakeholder categories include:</p>
@@ -70,14 +100,18 @@ function About() {
             </ul>
           </div>
           <p>
-            The goal of the platform is to leverage the strengths and expertise of
-            every stakeholder to drive progress in areas such as value chain
-            development, policy advocacy, climate-smart agriculture, digital
-            inclusion, research and innovation, farmer livelihoods, and sustainable
-            cocoa production. The Ondo State Sustainable Cocoa MSP serves as a coordination
-            platform that promotes dialogue, joint decision-making, knowledge
-            sharing and partnerships aimed at improving cocoa standards,
-            productivity, market access and sustainability.
+            The goal of the platform is to leverage the strengths and expertise of every stakeholder
+            to drive progress in areas such as value chain development, policy advocacy,
+            climate-smart agriculture, digital inclusion, research and innovation, farmer
+            livelihoods, and sustainable cocoa production. OSCP serves as a coordination platform
+            that promotes dialogue, joint decision-making, knowledge sharing and partnerships aimed
+            at improving cocoa standards, productivity, market access and sustainability.
+          </p>
+          <p>
+            In practice, collaboration happens through regular stakeholder dialogues, working groups
+            organised around the platform's priority areas, joint training and field activities, and
+            shared reporting — so that decisions affecting the sector are informed by the people
+            closest to the work, from farm to market.
           </p>
         </div>
       </section>
@@ -85,29 +119,39 @@ function About() {
       <section className="bg-card/40">
         <div className="mx-auto grid max-w-7xl gap-6 px-4 py-20 sm:px-6 md:grid-cols-2 lg:px-8">
           <div className="rounded-3xl border border-border bg-card p-10 shadow-sm">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">Our Vision</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
+              Our Vision
+            </p>
             <h3 className="mt-3 text-2xl leading-snug text-foreground">
-              To build a globally competitive, sustainable and inclusive cocoa
-              sector that improves livelihoods and promotes economic growth in
-              Ondo State.
+              To build a globally competitive, sustainable and inclusive cocoa sector that improves
+              livelihoods and promotes economic growth in Ondo State.
             </h3>
           </div>
           <div className="rounded-3xl border border-border gradient-hero p-10 text-primary-foreground shadow-sm">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/90">Our Mission</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/90">
+              Our Mission
+            </p>
             <h3 className="mt-3 text-2xl leading-snug text-white">
-              To foster collaboration among stakeholders for innovation, policy
-              dialogue, sustainable cocoa production, improved market systems and
-              resilient farming communities.
+              To foster collaboration among stakeholders for innovation, policy dialogue,
+              sustainable cocoa production, improved market systems and resilient farming
+              communities.
             </h3>
           </div>
         </div>
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-        <SectionHeading eyebrow="Ten strategic objectives" title="What we are working toward" align="center" />
+        <SectionHeading
+          eyebrow="Ten strategic objectives"
+          title="What we are working toward"
+          align="center"
+        />
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           {objectives.map(({ t, Icon }) => (
-            <div key={t} className="rounded-2xl border border-border bg-card p-6 text-center shadow-sm transition-all hover:-translate-y-1 hover:shadow-md">
+            <div
+              key={t}
+              className="rounded-2xl border border-border bg-card p-6 text-center shadow-sm transition-all hover:-translate-y-1 hover:shadow-md"
+            >
               <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
                 <Icon className="h-6 w-6" />
               </div>
@@ -132,7 +176,8 @@ function About() {
               className="h-auto w-full object-cover"
             />
             <figcaption className="px-6 py-4 text-sm text-muted-foreground">
-              Steering Committee executives, inaugurated on 23 July 2026 at Royal Bird Hotel and Towers, Akure.
+              Steering Committee executives, inaugurated on 23 July 2026 at Royal Bird Hotel and
+              Towers, Akure.
             </figcaption>
           </figure>
         </div>

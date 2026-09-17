@@ -48,6 +48,8 @@
   --color-ring-offset-background: var(--background);
   --color-cocoa: var(--cocoa);
   --color-cocoa-foreground: var(--cocoa-foreground);
+  --color-gold: var(--gold);
+  --color-gold-foreground: var(--gold-foreground);
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Fraunces", ui-serif, Georgia, serif;
   --color-chart-1: var(--chart-1);
@@ -87,6 +89,9 @@
   --accent-foreground: oklch(0.24 0 0);
   --cocoa: oklch(0.42 0.055 55);
   --cocoa-foreground: oklch(0.985 0.005 85);
+  /* Restrained gold/ochre accent #C99A3A — for small highlights only */
+  --gold: oklch(0.74 0.13 75);
+  --gold-foreground: oklch(0.24 0.04 75);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.985 0.005 85);
   --border: oklch(0.88 0.012 80);

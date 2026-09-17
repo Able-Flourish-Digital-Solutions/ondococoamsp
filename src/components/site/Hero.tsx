@@ -28,17 +28,22 @@ export function Hero() {
           </h1>
           <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/85 sm:text-lg">
             The Ondo State Sustainable Cocoa Multi-Stakeholder Platform (MSP) brings together
-            government, farmers, private sector actors, development partners,
-            researchers, financial institutions and civil society to jointly
-            improve cocoa production, sustainability, quality and livelihoods.
+            government, farmers, private sector actors, development partners, researchers, financial
+            institutions and civil society to jointly improve cocoa production, sustainability,
+            quality and livelihoods.
           </p>
           <div className="mt-9 flex flex-wrap gap-3">
             <Button asChild size="lg" className="bg-white text-primary hover:bg-white/90">
               <a href={MEMBERSHIP_FORM_URL} target="_blank" rel="noopener noreferrer">
-                Register for OSCP Membership <ArrowRight className="ml-1.5 h-4 w-4" />
+                Become a Member <ArrowRight className="ml-1.5 h-4 w-4" />
               </a>
             </Button>
-            <Button asChild size="lg" variant="outline" className="border-white/40 bg-transparent text-white hover:bg-white/10 hover:text-white">
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="border-white/40 bg-transparent text-white hover:bg-white/10 hover:text-white"
+            >
               <a href="#about-preview">Learn More</a>
             </Button>
           </div>

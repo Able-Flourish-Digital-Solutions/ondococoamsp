@@ -6,9 +6,12 @@ import {
   NEWS_GALLERIES,
   NEWS_SOURCE_URLS,
   newsDetailOptions,
+  newsListOptions,
   resolveCoverImage,
   type NewsRow,
 } from "@/lib/content";
+import { toAbsoluteUrl } from "@/lib/seo";
+import { getErrorMessage } from "@/lib/utils";
 
 const INAUGURATION_GROUP_PHOTO_1 = "/news/msp-inauguration/group-1.jpg";
 const INAUGURATION_GROUP_PHOTO_2 = "/news/msp-inauguration/group-2.jpg";
@@ -20,36 +23,44 @@ export const Route = createFileRoute("/news/$id")({
     }
     const title = `${loaderData.title} — Ondo State Sustainable Cocoa MSP`;
     const desc = loaderData.excerpt ?? loaderData.title;
-    const img = resolveCoverImage(loaderData);
+    const img = toAbsoluteUrl(resolveCoverImage(loaderData));
     return {
       meta: [
         { title },
         { name: "description", content: desc },
         { property: "og:title", content: loaderData.title },
         { property: "og:description", content: desc },
-        ...(img ? [
-          { property: "og:image", content: img },
-          { name: "twitter:image", content: img },
-        ] : []),
+        ...(img
+          ? [
+              { property: "og:image", content: img },
+              { name: "twitter:image", content: img },
+            ]
+          : []),
       ],
     };
   },
   loader: async ({ context, params }) => {
     const data = await context.queryClient.ensureQueryData(newsDetailOptions(params.id));
     if (!data) throw notFound();
+    await context.queryClient.ensureQueryData(newsListOptions(4));
     return data as NewsRow;
   },
   component: NewsDetail,
   errorComponent: ({ error }) => (
     <div className="mx-auto max-w-3xl px-4 py-20 sm:px-6 lg:px-8">
-      <p className="text-sm text-destructive">Couldn't load article: {error.message}</p>
+      <p className="text-sm text-destructive">Couldn't load article: {getErrorMessage(error)}</p>
     </div>
   ),
   notFoundComponent: () => (
     <div className="mx-auto max-w-3xl px-4 py-20 text-center sm:px-6 lg:px-8">
       <h1 className="text-3xl">Article not found</h1>
-      <p className="mt-3 text-muted-foreground">This article may have been removed or unpublished.</p>
-      <Link to="/news" className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-primary">
+      <p className="mt-3 text-muted-foreground">
+        This article may have been removed or unpublished.
+      </p>
+      <Link
+        to="/news"
+        className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-primary"
+      >
         <ArrowLeft className="h-4 w-4" /> Back to news
       </Link>
     </div>
@@ -59,16 +70,25 @@ export const Route = createFileRoute("/news/$id")({
 function NewsDetail() {
   const { id } = Route.useParams();
   const { data } = useSuspenseQuery(newsDetailOptions(id));
+  const { data: allNews } = useSuspenseQuery(newsListOptions(4));
   if (!data) return null;
   const gallery = NEWS_GALLERIES[data.id] ?? [];
   const sourceUrl = NEWS_SOURCE_URLS[data.id];
+  const related = allNews.filter((n) => n.id !== data.id).slice(0, 3);
   return (
     <article className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
-      <Link to="/news" className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-primary">
+      <Link
+        to="/news"
+        className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-primary"
+      >
         <ArrowLeft className="h-4 w-4" /> All news
       </Link>
       <p className="mt-8 text-xs uppercase tracking-wider text-primary">
-        {new Date(data.published_at).toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" })}
+        {new Date(data.published_at).toLocaleDateString(undefined, {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        })}
       </p>
       <h1 className="mt-2 text-4xl leading-tight sm:text-5xl">{data.title}</h1>
       {data.excerpt && <p className="mt-4 text-lg text-muted-foreground">{data.excerpt}</p>}
@@ -78,14 +98,16 @@ function NewsDetail() {
           alt={
             data.id === COCOA_QUALITY_DIALOGUE_ID
               ? "Public and private cocoa-sector stakeholders gathered for the cocoa quality standards dialogue in Akure"
-              : ""
+              : data.title
           }
           className="mt-10 aspect-[16/9] w-full rounded-2xl object-cover"
         />
       )}
       <div className="prose prose-neutral mt-10 max-w-none text-base leading-relaxed text-foreground/90">
         {data.body.split("\n").map((p, i) => (
-          <p key={i} className="mb-5">{p}</p>
+          <p key={i} className="mb-5">
+            {p}
+          </p>
         ))}
       </div>
       {gallery.length > 0 && (
@@ -105,6 +127,9 @@ function NewsDetail() {
                   loading="lazy"
                   className="aspect-[16/9] h-full w-full object-cover"
                 />
+                <figcaption className="px-4 py-3 text-xs text-muted-foreground">
+                  {image.alt}
+                </figcaption>
               </figure>
             ))}
           </div>
@@ -141,6 +166,49 @@ function NewsDetail() {
             />
           </figure>
         </div>
+      )}
+      {related.length > 0 && (
+        <section
+          className="mt-16 border-t border-border pt-10"
+          aria-labelledby="related-news-heading"
+        >
+          <h2 id="related-news-heading" className="text-xl font-semibold text-foreground">
+            More news
+          </h2>
+          <div className="mt-5 grid gap-5 sm:grid-cols-3">
+            {related.map((n) => (
+              <Link
+                key={n.id}
+                to="/news/$id"
+                params={{ id: n.id }}
+                className="group overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all hover:-translate-y-1 hover:shadow-md"
+              >
+                <div className="aspect-[16/10] overflow-hidden bg-muted">
+                  {n.cover_image_url && (
+                    <img
+                      src={resolveCoverImage(n)}
+                      alt={n.title}
+                      loading="lazy"
+                      className="h-full w-full object-cover transition-transform group-hover:scale-105"
+                    />
+                  )}
+                </div>
+                <div className="p-4">
+                  <p className="text-xs uppercase tracking-wider text-muted-foreground">
+                    {new Date(n.published_at).toLocaleDateString(undefined, {
+                      year: "numeric",
+                      month: "short",
+                      day: "numeric",
+                    })}
+                  </p>
+                  <h3 className="mt-1.5 line-clamp-2 text-sm font-semibold text-foreground">
+                    {n.title}
+                  </h3>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
       )}
     </article>
   );
