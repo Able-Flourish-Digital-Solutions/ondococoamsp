@@ -4,10 +4,12 @@ import { Plus, Minus } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export function PriorityAreaCard({
+  index,
   title,
   description,
   Icon,
 }: {
+  index?: number;
   title: string;
   description: string;
   Icon: LucideIcon;
@@ -31,7 +33,19 @@ export function PriorityAreaCard({
           {open ? <Minus className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
         </span>
       </div>
-      <h3 className="mt-5 text-lg font-semibold text-foreground">{title}</h3>
+      {typeof index === "number" && (
+        <span className="mt-5 block text-xs font-semibold tracking-wider text-gold">
+          {String(index).padStart(2, "0")}
+        </span>
+      )}
+      <h3
+        className={cn(
+          "text-lg font-semibold text-foreground",
+          typeof index === "number" ? "mt-1" : "mt-5",
+        )}
+      >
+        {title}
+      </h3>
       <div
         className={cn(
           "grid transition-all duration-300",

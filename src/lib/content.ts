@@ -62,8 +62,8 @@ const NEWS_COVER_OVERRIDES: Record<string, string> = {
 export function resolveCoverImage(row: {
   id: string;
   cover_image_url: string | null;
-}): string | null {
-  return NEWS_COVER_OVERRIDES[row.id] ?? row.cover_image_url;
+}): string | undefined {
+  return NEWS_COVER_OVERRIDES[row.id] ?? row.cover_image_url ?? undefined;
 }
 
 export const RESOURCE_CATEGORIES = [

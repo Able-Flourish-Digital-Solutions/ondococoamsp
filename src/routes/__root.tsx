@@ -10,6 +10,7 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
+import oscpLogoUrl from "../assets/oscp-logo.png?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
@@ -36,7 +37,7 @@ function NotFoundComponent() {
   );
 }
 
-function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
+function ErrorComponent({ error, reset }: { error: unknown; reset: () => void }) {
   console.error(error);
   const router = useRouter();
   useEffect(() => {
@@ -80,25 +81,56 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Ondo State Sustainable Cocoa MSP — Strengthening the Cocoa Value Chain" },
-      { name: "description", content: "A coordination platform uniting government, farmers, private sector and partners to advance sustainable cocoa production in Ondo State." },
-      { property: "og:title", content: "Ondo State Sustainable Cocoa MSP — Strengthening the Cocoa Value Chain" },
-      { property: "og:description", content: "A coordination platform uniting government, farmers, private sector and partners to advance sustainable cocoa production in Ondo State." },
+      {
+        name: "description",
+        content:
+          "A coordination platform uniting government, farmers, private sector and partners to advance sustainable cocoa production in Ondo State.",
+      },
+      {
+        property: "og:title",
+        content: "Ondo State Sustainable Cocoa MSP — Strengthening the Cocoa Value Chain",
+      },
+      {
+        property: "og:description",
+        content:
+          "A coordination platform uniting government, farmers, private sector and partners to advance sustainable cocoa production in Ondo State.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Ondo State Sustainable Cocoa MSP — Strengthening the Cocoa Value Chain" },
-      { name: "twitter:description", content: "A coordination platform uniting government, farmers, private sector and partners to advance sustainable cocoa production in Ondo State." },
-      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/642b4c14-6336-44b6-93d0-0e9783973046" },
-      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/642b4c14-6336-44b6-93d0-0e9783973046" },
+      {
+        name: "twitter:title",
+        content: "Ondo State Sustainable Cocoa MSP — Strengthening the Cocoa Value Chain",
+      },
+      {
+        name: "twitter:description",
+        content:
+          "A coordination platform uniting government, farmers, private sector and partners to advance sustainable cocoa production in Ondo State.",
+      },
+      {
+        property: "og:image",
+        content:
+          "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/642b4c14-6336-44b6-93d0-0e9783973046",
+      },
+      {
+        name: "twitter:image",
+        content:
+          "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/642b4c14-6336-44b6-93d0-0e9783973046",
+      },
     ],
     links: [
       {
         rel: "stylesheet",
         href: appCss,
       },
+      { rel: "icon", href: oscpLogoUrl, type: "image/png" },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "apple-touch-icon", href: oscpLogoUrl },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap",
+      },
     ],
   }),
   shellComponent: RootShell,

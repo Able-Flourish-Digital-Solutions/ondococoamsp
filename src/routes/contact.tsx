@@ -11,7 +11,11 @@ export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
       { title: "Contact — Ondo State Sustainable Cocoa MSP" },
-      { name: "description", content: "Get in touch with the Ondo State Sustainable Cocoa Multi-Stakeholder Platform Secretariat." },
+      {
+        name: "description",
+        content:
+          "Get in touch with the Ondo State Sustainable Cocoa Multi-Stakeholder Platform Secretariat.",
+      },
       { property: "og:title", content: "Contact the Ondo State Sustainable Cocoa MSP" },
       { property: "og:description", content: "Reach the MSP Secretariat by form, phone or email." },
     ],
@@ -41,7 +45,10 @@ function Contact() {
 
       <div className="mt-14 grid gap-10 lg:grid-cols-5">
         <div className="lg:col-span-3">
-          <form onSubmit={onSubmit} className="rounded-2xl border border-border bg-card p-6 shadow-sm sm:p-8">
+          <form
+            onSubmit={onSubmit}
+            className="rounded-2xl border border-border bg-card p-6 shadow-sm sm:p-8"
+          >
             {sent && (
               <div className="mb-6 flex items-start gap-3 rounded-lg border border-primary/30 bg-primary/5 p-4 text-sm text-foreground">
                 <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground">
@@ -49,7 +56,9 @@ function Contact() {
                 </span>
                 <div>
                   <p className="font-medium">Thank you</p>
-                  <p className="text-muted-foreground">Your message has been received. The Secretariat will be in touch.</p>
+                  <p className="text-muted-foreground">
+                    Your message has been received. The Secretariat will be in touch.
+                  </p>
                 </div>
               </div>
             )}
@@ -61,8 +70,17 @@ function Contact() {
               <Field id="phone" label="Phone" type="tel" />
             </div>
             <div className="mt-5">
-              <Label htmlFor="message" className="text-sm">Message</Label>
-              <Textarea id="message" name="message" required rows={6} className="mt-2" placeholder="How can the Secretariat help?" />
+              <Label htmlFor="message" className="text-sm">
+                Message
+              </Label>
+              <Textarea
+                id="message"
+                name="message"
+                required
+                rows={6}
+                className="mt-2"
+                placeholder="How can the Secretariat help?"
+              />
             </div>
             <Button type="submit" size="lg" className="mt-6 w-full sm:w-auto">
               Send message
@@ -71,14 +89,28 @@ function Contact() {
         </div>
 
         <aside className="space-y-4 lg:col-span-2">
-          <InfoRow Icon={MapPin} title="Office address" body="MSP Secretariat, Alagbaka, Akure, Ondo State, Nigeria" />
+          <div className="rounded-2xl border border-border bg-card p-5 shadow-sm">
+            <p className="text-xs font-semibold uppercase tracking-wider text-primary">
+              OSCP Secretariat
+            </p>
+            <p className="mt-1 text-lg font-semibold text-foreground">Akure, Ondo State, Nigeria</p>
+          </div>
+          <InfoRow
+            Icon={MapPin}
+            title="Office address"
+            body="MSP Secretariat, Alagbaka, Akure, Ondo State, Nigeria"
+          />
           <InfoRow
             Icon={Phone}
             title="Phone"
             body={
               <>
-                <a href="tel:+2348034729424" className="block hover:text-primary">+234 803 472 9424</a>
-                <a href="tel:+2347065949966" className="block hover:text-primary">+234 706 594 9966</a>
+                <a href="tel:+2348034729424" className="block hover:text-primary">
+                  +234 803 472 9424
+                </a>
+                <a href="tel:+2347065949966" className="block hover:text-primary">
+                  +234 706 594 9966
+                </a>
               </>
             }
           />
@@ -98,16 +130,37 @@ function Contact() {
   );
 }
 
-function Field({ id, label, type = "text", required }: { id: string; label: string; type?: string; required?: boolean }) {
+function Field({
+  id,
+  label,
+  type = "text",
+  required,
+}: {
+  id: string;
+  label: string;
+  type?: string;
+  required?: boolean;
+}) {
   return (
     <div>
-      <Label htmlFor={id} className="text-sm">{label}{required && <span className="text-destructive"> *</span>}</Label>
+      <Label htmlFor={id} className="text-sm">
+        {label}
+        {required && <span className="text-destructive"> *</span>}
+      </Label>
       <Input id={id} name={id} type={type} required={required} className="mt-2" />
     </div>
   );
 }
 
-function InfoRow({ Icon, title, body }: { Icon: React.ComponentType<{ className?: string }>; title: string; body: React.ReactNode }) {
+function InfoRow({
+  Icon,
+  title,
+  body,
+}: {
+  Icon: React.ComponentType<{ className?: string }>;
+  title: string;
+  body: React.ReactNode;
+}) {
   return (
     <div className="flex items-start gap-4 rounded-2xl border border-border bg-card p-5 shadow-sm">
       <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
